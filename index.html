@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Example</title>
+</head>
+<body>
+<h1 class="nothing">nothing</h1>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let nothing = document.querySelector('.nothing');
+
+        if ("geolocation" in navigator) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+
+                    console.log("Latitude:", latitude);
+                    console.log("Longitude:", longitude);
+                    nothing.innerHTML = 'Latitude: ' + latitude + '<br>Longitude: ' + longitude;
+                },
+                function (error) {
+                    console.error("Error getting location:", error.message);
+                    nothing.innerHTML = 'Error in getting data: ' + error.message;
+                }
+            );
+        } else {
+            nothing.innerHTML = 'No support for navigation';
+        }
+    });
+</script>
+</body>
+</html>
